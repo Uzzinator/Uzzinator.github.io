@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation</title>
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-image: url(https://img.freepik.com/free-vector/blurred-valentine-s-day-background_52683-32322.jpg?t=st=1725815629~exp=1725819229~hmac=b2dad56e2e7643899d7341a9c5346e6626372c4949ec2db821f3cdf75a843a29&w=996);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+    .popup {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        display: none;
+    }
+    .active {
+        display: block;
+    }
+    .popup button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .yes {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .no {
+        background-color: #f44336;
+        color: white;
+    }
+    .back {
+        background-color: #FFA500; /* Light Orange */
+        color: white;
+    }
+    img {
+        max-width: 100px;
+    }
+    </style>
+</head>
+<body>
+    <!-- Initial Popup -->
+    <div class="popup active" id="popup1">
+        <h2>Hey, I thought this would be a fun way to ask!</h2>
+        <p>But would you like to go out this upcoming weekend?</p>
+        <button class="yes" onclick="showPopup('popup2')">Yes</button>
+        <button class="no" id="noButton" onclick="handleNo()">No</button>
+    </div>
+
+    <!-- Popup 2: Day Choice -->
+    <div class="popup" id="popup2">
+        <h2>What day would you be keen on going?</h2>
+        <button class="yes" onclick="showPopup('popupFriday')">Friday</button>
+        <button class="yes" onclick="showPopup('popupSaturday')">Saturday</button>
+        <button class="yes" onclick="showPopup('popupSunday')">Sunday</button>
+        <button class="back" onclick="showPopup('popup1')">Go Back</button>
+    </div>
+
+    <!-- Friday Plans -->
+    <div class="popup" id="popupFriday">
+        <p>I'm free after 5, considering it's a Friday night, we should do something around Seapoint. Let's do putt putt and supper in the area.</p>
+        <button class="yes" onclick="showPopup('popupFridayKeen')">I'm keen</button>
+        <button class="back" onclick="showPopup('popup2')">Go Back</button>
+    </div>
+
+    <!-- Friday Confirmation -->
+    <div class="popup" id="popupFridayKeen">
+        <h2>See you Friday!</h2>
+        <img src="https://swingdictionary.golf/wp-content/uploads/2019/05/golf-putt.gif" alt="Golf" style="max-width: 300px;">
+        <button class="back" onclick="showPopup('popupFriday')">Go Back</button>
+    </div>
+
+    <!-- Saturday Plans -->
+    <div class="popup" id="popupSaturday">
+        <h2>What would you prefer to do on Saturday?</h2>
+        <button class="yes" onclick="showPopup('popupSaturdayMorning')">Morning Plans</button>
+        <button class="yes" onclick="showPopup('popupSaturdayAfternoon')">Afternoon Plans</button>
+        <button class="yes" onclick="showPopup('popupSaturdayPick')">Please Pick Me</button>
+        <button class="back" onclick="showPopup('popup2')">Go Back</button>
+    </div>
+
+    <!-- Saturday Morning Plans -->
+    <div class="popup" id="popupSaturdayMorning">
+        <p>Considering it's Saturday Morning, let's do a hike at Cecilia Forest and then get an early lunch after.</p>
+        <button class="yes" onclick="showPopup('popupSaturdayMorningKeen')">I'm keen</button>
+        <button class="back" onclick="showPopup('popupSaturday')">Go Back</button>
+    </div>
+
+    <!-- Saturday Morning Confirmation -->
+    <div class="popup" id="popupSaturdayMorningKeen">
+        <h2>See you Saturday Morning :)</h2>
+        <img src="https://i.pinimg.com/originals/f0/b3/87/f0b387aa0215ed48643747a5bea8652f.gif" alt="Bouquet of Flowers" style="max-width: 150px;">
+        <button class="back" onclick="showPopup('popupSaturdayMorning')">Go Back</button>
+    </div>
+
+    <!-- Saturday Afternoon Plans -->
+    <div class="popup" id="popupSaturdayAfternoon">
+        <p>Saturday afternoons are perfect for relaxing, so let's watch a Bollywood movie and get supper.</p>
+        <button class="yes" onclick="showPopup('popupSaturdayAfternoonKeen')">I'm keen</button>
+        <button class="back" onclick="showPopup('popupSaturday')">Go Back</button>
+    </div>
+
+    <!-- Saturday Afternoon Confirmation -->
+    <div class="popup" id="popupSaturdayAfternoonKeen">
+        <h2>I'll see you on the big screens!</h2>
+        <img src="https://i.pinimg.com/originals/09/85/0c/09850caf16e9fa1b855e5ba5b5bafa00.gif" alt="Shah Rukh Khan" style="max-width: 300px;">
+        <button class="back" onclick="showPopup('popupSaturdayAfternoon')">Go Back</button>
+    </div>
+
+    <!-- Saturday "Please Pick Me" Plans -->
+    <div class="popup" id="popupSaturdayPick">
+        <p>Let's spend the entire day together, I'll cancel all my plans if need be. We can start off with an early hike, not too intense, and then grab something to eat for lunch, depending on where we eat, we can go shopping at the mall for a while, then come back and watch a movie and either get supper or have something light.</p>
+        <button class="yes" onclick="showPopup('popupSaturdayPickKeen')">Let's do this</button>
+        <button class="back" onclick="showPopup('popupSaturday')">Go Back</button>
+    </div>
+
+    <!-- Saturday "Please Pick Me" Confirmation -->
+    <div class="popup" id="popupSaturdayPickKeen">
+        <h2>I can't wait for Saturday!</h2>
+        <img src="https://www.snexplores.org/wp-content/uploads/2019/11/860_fireworks_banner_4MB.gif" alt="Fireworks" style="max-width: 300px;">
+        <button class="back" onclick="showPopup('popupSaturdayPick')">Go Back</button>
+    </div>
+
+    <!-- Sunday Plans -->
+    <div class="popup" id="popupSunday">
+        <h2>What would you like to do on Sunday?</h2>
+        <button class="yes" onclick="showPopup('popupSundayMorning')">Morning Plans</button>
+        <button class="yes" onclick="showPopup('popupSundaySurprise')">Surprise</button>
+        <button class="back" onclick="showPopup('popup2')">Go Back</button>
+    </div>
+
+    <!-- Sunday Morning Plans -->
+    <div class="popup" id="popupSundayMorning">
+        <p>Let's go for a walk on Seapoint and get brunch at Jarryds or another place close by.</p>
+        <button class="yes" onclick="showPopup('popupSundayMorningKeen')">I'm keen</button>
+        <button class="back" onclick="showPopup('popupSunday')">Go Back</button>
+    </div>
+
+    <!-- Sunday Morning Confirmation -->
+    <div class="popup" id="popupSundayMorningKeen">
+        <h2>Sunday morning just got so much more interesting!</h2>
+        <img src="https://media.tenor.com/SeJrtunZoVgAAAAM/dory-disney.gif" alt="Sun" style="max-width: 150px;">
+        <button class="back" onclick="showPopup('popupSundayMorning')">Go Back</button>
+    </div>
+
+    <!-- Sunday Surprise -->
+    <div class="popup" id="popupSundaySurprise">
+        <p>Not sure why you pressed here lol</p>
+        <button class="yes" onclick="showPopup('popupSunday')">Go Back</button>
+    </div>
+
+    <script>
+        function showPopup(popupId) {
+            document.querySelectorAll('.popup').forEach(popup => popup.classList.remove('active'));
+            document.getElementById(popupId).classList.add('active');
+        }
+
+        let noClickCount = 0;
+
+        function handleNo() {
+            noClickCount++;
+            const noButton = document.getElementById('noButton');
+            if (noClickCount < 3) {
+                // Move the "No" button to a random location
+                const randomX = Math.random() * (window.innerWidth - noButton.offsetWidth);
+                const randomY = Math.random() * (window.innerHeight - noButton.offsetHeight);
+                noButton.style.left = randomX + 'px';
+                noButton.style.top = randomY + 'px';
+                noButton.style.position = 'absolute';
+            } else {
+                // On the third click, show the "No worries" message
+                document.getElementById('popup1').innerHTML = '<h2>No worries, that is fine!</h2>';
+            }
+        }
+    </script>
+</body>
+</html>
